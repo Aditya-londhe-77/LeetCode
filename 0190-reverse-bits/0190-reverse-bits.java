@@ -1,11 +1,14 @@
-public class Solution {
+class Solution {
     public int reverseBits(int n) {
-        int res = 0;
-        for (int i = 0; i < 32; i++) {
-            res <<= 1;
-            res |= (n & 1);
-            n >>>= 1;
+        String str = Integer.toBinaryString(n);
+        int m = str.length();
+        for(int i=0; i<32-m;i++){
+            str='0'+str;
         }
-        return res;
+        String newstr = "";
+        for(int i=str.length()-1; i>=0; i--){
+            newstr+=str.charAt(i);
+        }
+        return Integer.parseInt(newstr,2);
     }
 }
