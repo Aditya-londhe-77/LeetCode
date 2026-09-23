@@ -1,13 +1,17 @@
 class Solution {
     public int majorityElement(int[] nums) {
-        int count =0;
-        int ele=0;
-        for(int num : nums){
-            if(count==0){
-                ele = num;
-            }
-            count += (num == ele) ? 1 : -1;
+        int n = nums.length / 2 ;
+        
+        Map<Integer,Integer> XMap = new HashMap<>();
+        for(int i =0 ;i <nums.length ;i++){
+            XMap.put(nums[i],XMap.getOrDefault(nums[i],0)+1);
         }
-        return ele;  
+
+        for(Map.Entry<Integer,Integer> entry : XMap.entrySet()){
+           if(entry.getValue()> n){
+            return entry.getKey();
+           } 
+        }
+        return -1;
     }
 }
